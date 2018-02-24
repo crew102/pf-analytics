@@ -1,0 +1,224 @@
+{
+  "@encoding": "iso-8859-1",
+  "@version": "1.0",
+  "petfinder": {
+    "@xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance",
+    "lastOffset": {
+      "$t": "2"
+    },
+    "pets": {
+      "pet": [
+        {
+          "options": {
+            "option": [
+              {
+                "$t": "altered"
+              },
+              {
+                "$t": "hasShots"
+              }
+              ]
+          },
+          "status": {
+            "$t": "A"
+          },
+          "contact": {
+            "phone": {
+              
+            },
+            "state": {
+              "$t": "DC"
+            },
+            "address2": {
+              
+            },
+            "email": {
+              "$t": "info@citydogsrescuedc.org"
+            },
+            "city": {
+              "$t": "Washington"
+            },
+            "zip": {
+              "$t": "20008"
+            },
+            "fax": {
+              
+            },
+            "address1": {
+              
+            }
+          },
+          "age": {
+            "$t": "Adult"
+          },
+          "size": {
+            "$t": "M"
+          },
+          "media": {
+            "photos": {
+              "photo": [
+                {
+                  "@size": "pnt",
+                  "$t": "http://photos.petfinder.com/photos/pets/39639449/1/?bust=1507894574&width=60&-pnt.jpg",
+                  "@id": "1"
+                },
+                {
+                  "@size": "fpm",
+                  "$t": "http://photos.petfinder.com/photos/pets/39639449/1/?bust=1507894574&width=95&-fpm.jpg",
+                  "@id": "1"
+                }
+                ]
+            }
+          },
+          "id": {
+            "$t": "39639449"
+          },
+          "shelterPetId": {
+            "$t": "17852508"
+          },
+          "breeds": {
+            "breed": {
+              "$t": "American Bulldog"
+            }
+          },
+          "name": {
+            "$t": "Cratos (Needs Foster)"
+          },
+          "sex": {
+            "$t": "M"
+          },
+          "description": {
+            "$t": "Dog Name: Cratos aka Keegan\n\nSuspected Breed(s): American Bulldog mix\n\nGender: Male\n\nAge: 2 years old\n\nWeight: 78 lbs\n\nPersonality: Playful, Adaptable, Trainable, Patient, Gentle, Energetic, Calm, Loyal, Smart, Affectionate, Snuggler"
+          },
+          "mix": {
+            "$t": "yes"
+          },
+          "shelterId": {
+            "$t": "DC22"
+          },
+          "lastUpdate": {
+            "$t": "2017-10-13T10:14:31Z"
+          },
+          "animal": {
+            "$t": "Dog"
+          }
+        },
+        {
+          "options": {
+            "option": [
+              {
+                "$t": "altered"
+              },
+              {
+                "$t": "hasShots"
+              },
+              {
+                "$t": "noKids"
+              }
+              ]
+          },
+          "status": {
+            "$t": "A"
+          },
+          "contact": {
+            "phone": {
+              
+            },
+            "state": {
+              "$t": "DC"
+            },
+            "address2": {
+              
+            },
+            "email": {
+              "$t": "info@citydogsrescuedc.org"
+            },
+            "city": {
+              "$t": "Washington"
+            },
+            "zip": {
+              "$t": "20008"
+            },
+            "fax": {
+              
+            },
+            "address1": {
+              
+            }
+          },
+          "age": {
+            "$t": "Adult"
+          },
+          "size": {
+            "$t": "L"
+          },
+          "media": {
+            "photos": {
+              "photo": [
+                {
+                  "@size": "pnt",
+                  "$t": "http://photos.petfinder.com/photos/pets/39639450/1/?bust=1515698589&width=60&-pnt.jpg",
+                  "@id": "1"
+                },
+                {
+                  "@size": "fpm",
+                  "$t": "http://photos.petfinder.com/photos/pets/39639450/1/?bust=1515698589&width=95&-fpm.jpg",
+                  "@id": "1"
+                }
+                ]
+            }
+          },
+          "id": {
+            "$t": "39639450"
+          },
+          "shelterPetId": {
+            "$t": "17841790"
+          },
+          "breeds": {
+            "breed": {
+              "$t": "German Shepherd Dog"
+            }
+          },
+          "name": {
+            "$t": "Frantz"
+          },
+          "sex": {
+            "$t": "M"
+          },
+          "description": {
+            "$t": "Dog Name: FrantzSuspected Breed(s): German Shepherd (GSD)Gender: MaleAge: 2 yearsWeight: 62 lbsPersonality: Playful. Quick learner. Snuggler. Loyal. Affectionate. Good running partner. Adaptable. High energy. Needs significant daily exercise. Eager to please.Observations with Dogs: Playful. He has been in free roam daycare and does very well with all the dogs.Observations with Cats: IgnoresObservations with Kids:"
+          },
+          "mix": {
+            "$t": "no"
+          },
+          "shelterId": {
+            "$t": "DC22"
+          },
+          "lastUpdate": {
+            "$t": "2017-10-13T10:14:31Z"
+          },
+          "animal": {
+            "$t": "Dog"
+          }
+        }
+        ]
+    },
+    "header": {
+      "timestamp": {
+        "$t": "2018-02-12T19:49:42Z"
+      },
+      "status": {
+        "message": {
+          
+        },
+        "code": {
+          "$t": "100"
+        }
+      },
+      "version": {
+        "$t": "0.1"
+      }
+    },
+    "@xsi:noNamespaceSchemaLocation": "http://api.petfinder.com/schemas/0.9/petfinder.xsd"
+  }
+}
