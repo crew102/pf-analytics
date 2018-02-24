@@ -1,33 +1,15 @@
 package io.github.crew102.apimethods;
 
 import java.util.ArrayList;
+import io.github.crew102.midlevel.PetFinder;
 
 public class FindPets {	
 	PetFinder petfinder;
 }
 
-class PetFinder {
-	LastOffset lastOffset;
-	Pets pets;
+/*
+class Breeds {
+	ArrayList<StringWrapper> breed;
 }
-
-class LastOffset {
-	String $t;
-}
-
-class Pets {
-	ArrayList<Pet> pet;
-}
-
-class Pet {
-	Options options;
-}
-
-class Options {
-	ArrayList<Option> option;
-}
-
-
-
-
+*/
 
