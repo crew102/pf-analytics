@@ -29,7 +29,7 @@ services:
     secrets:
       - mysql-root-password
     volumes:
-      - ./services/config/nginx.conf:/etc/mysql/conf.d/mysql.cnf
+      - ./services/config/mysql.cnf:/etc/mysql/conf.d/mysql.cnf
     environment:
       MYSQL_ROOT_PASSWORD_FILE: /run/secrets/mysql-root-password
 
@@ -39,17 +39,19 @@ services:
     build: ./shiny-server
     ports:
       - 3838:3838
-    restart: always
+    volumes:
+      - ./shiny-server/shiny-server.conf:/etc/shiny-server/shiny-server.conf
     secrets:
       - mysql-root-password
+    restart: always
 
   rstudio:
     image: rocker/tidyverse
     ports:
       - 8003:8787
-    restart: always
     secrets:
       - mysql-root-password
+    restart: always
 
 secrets:
   mysql-root-password:
