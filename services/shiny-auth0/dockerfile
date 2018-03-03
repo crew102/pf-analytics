@@ -1,14 +1,11 @@
 FROM node
 
-RUN git clone https://github.com/crew102/shiny-auth0.git
+RUN git clone https://github.com/crew102/shiny-auth0.git; \
+  cd shiny-auth0; \
+  npm install express fs
 
-# need to install node modules
+WORKDIR shiny-auth0
 
-# copy over .env file
-COPY . /shiny-auth0/
-
-WORKDIR /shiny-auth0
-
-EXPOSE 3000
+COPY ./.env /shiny-auth0/.env
 
 CMD npm start

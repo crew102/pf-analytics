@@ -2,3 +2,4 @@ prototype/.Rproj.user
 pf-analytics/client/target/
 pf-analytics/model/target/
 .Rproj.user
+services/secrets/
