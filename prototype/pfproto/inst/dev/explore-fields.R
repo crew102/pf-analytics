@@ -1,29 +1,26 @@
-library(tidyverse)
-library(jsonlite)
-library(httr)
+library(dplyr)
+library(tidyr)
+library(devtools)
 
-resp_to_json <- function(response) {
-  content(response, "text") %>% 
-    fromJSON()
-}
+load_all()
 
-p_find <- function(key = Sys.getenv("PFKEY"), 
-                   location = "20008", 
-                   output = "full", 
-                   count = 100, 
-                   offset = 1) {
-  paste0(
-    "http://api.petfinder.com/pet.find?key=", key, 
-    "&location=", location,
-    "&output=", output,
-    "&count=", count,
-    "&offset=", offset,
-    "&animal=dog",
-    "&format=json"
-  ) %>% 
-    GET() %>%  
-    resp_to_json()
-}
+xrep <- p_find(count = 1000)
+data <- p_find_to_tibble(xrep)
 
-xrep <- p_find(count = 2)
-pet <- xrep$petfinder$pets$pet
+saveRDS(data, "cache/march-5.rds")
+
+data %>%
+  select(id, option) %>%
+  unnest(option) %>% View
+
+data %>%
+  select(id, shelterId, lastUpdate) %>%
+  arrange(shelterId, lastUpdate) %>% View
+
+# date added for pet in question
+#
+# in future, for each day: check to see if shelter has added, removed, or updated any records
+# if no activity, then can't incredment days on petfinder count for that day
+# 1. see if petid is still in list. if not, that signals removal
+# 2. if petid is still in list, check to see if you can increment the "days on petfinder" count by
+# seeing if another pet was updated today and time between now and time of last update for this "other" pet is at least 5 hours
