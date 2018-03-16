@@ -7,7 +7,7 @@ get_pf_key <- function() {
 }
 
 resp_to_json <- function(response) {
-  httr::content(response, "text") %>%
+  httr::content(response, "text", encoding = "UTF-8") %>%
     jsonlite::fromJSON()
 }
 
