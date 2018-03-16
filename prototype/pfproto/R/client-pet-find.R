@@ -30,7 +30,7 @@ p_find_to_pftibble <- function(p_find_out) {
     status = pet$status$`$t`,
     city = pet$contact$city$`$t`,
     state = pet$contact$state$`$t`,
-    zip = pet$contact$zip$`$t`,
+    zip = as.numeric(pet$contact$zip$`$t`),
     age = pet$age$`$t`,
     size = pet$size$`$t`,
     breed = lapply(pet$breeds$breed, as_vec),
