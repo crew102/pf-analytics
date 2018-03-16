@@ -22,10 +22,10 @@ p_find_to_pftibble <- function(p_find_out) {
 
   tibble(
     id = pet$id$`$t`,
-    shelterPetId = pet$shelterPetId$`$t`,
+    shelter_pet_id = pet$shelterPetId$`$t`,
     name = pet$name$`$t`,
-    shelterId = pet$shelterId$`$t`,
-    lastUpdate = lubridate::as_datetime(pet$lastUpdate$`$t`),
+    shelter_id = pet$shelterId$`$t`,
+    last_update = lubridate::as_datetime(pet$lastUpdate$`$t`),
     option = lapply(pet$options$option, as_vec),
     status = pet$status$`$t`,
     city = pet$contact$city$`$t`,
