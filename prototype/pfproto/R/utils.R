@@ -15,3 +15,5 @@ as_vec <- function(x)
   if (is.null(x)) return(NA) else unlist(x, use.names = FALSE)
 
 null_to_na <- function(x) if (is.null(x)) return(NA) else x
+
+add_class <- function(x, class) structure(x, class = c(class(x), class))

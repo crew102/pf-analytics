@@ -16,7 +16,7 @@ p_find <- function(pf_key = get_pf_key(),
     resp_to_json()
 }
 
-p_find_to_tibble <- function(p_find_out) {
+p_find_to_pftibble <- function(p_find_out) {
 
   pet <- p_find_out$petfinder$pets$pet
 
@@ -38,5 +38,6 @@ p_find_to_tibble <- function(p_find_out) {
     mix = pet$mix$`$t`,
     description = pet$description$`$t`,
     photo = lapply(pet$media$photos$photo, null_to_na)
-  )
+  ) %>%
+    add_class("pftibble")
 }
