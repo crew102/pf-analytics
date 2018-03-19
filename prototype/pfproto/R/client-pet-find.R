@@ -19,7 +19,7 @@ p_find <- function(pf_key = get_pf_key(),
     resp_to_json()
 }
 
-p_find_to_pftibble <- function(p_find_out) {
+as_pftibble <- function(p_find_out) {
 
   pet <- p_find_out$petfinder$pets$pet
 
