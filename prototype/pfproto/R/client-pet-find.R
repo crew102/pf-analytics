@@ -3,9 +3,12 @@ p_find <- function(pf_key = get_pf_key(),
                    output = "full",
                    count = 100,
                    offset = 1) {
+  location <- ifelse(
+    is.character(location), utils::URLencode(location), location
+  )
   paste0(
     "http://api.petfinder.com/pet.find?key=", pf_key,
-    "&location=", utils::URLencode(location),
+    "&location=", location,
     "&output=", output,
     "&count=", count,
     "&offset=", offset,
