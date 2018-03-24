@@ -1,3 +1,5 @@
+# Function to pull all distinct pets (actually, just dogs) found in a vector
+# of citystates, where a citystate is a string with "city, state"
 distinct_pet <- function(citystates) {
   lapply(citystates, p_find_one_city) %>%
     do.call(rbind, .)

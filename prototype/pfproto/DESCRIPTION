@@ -1,6 +1,6 @@
 Package: pfproto
 Type: Package
-Title: A prototype of the PF-Analytics web app
+Title: A prototype of the PF-Analytics app
 Version: 0.0.0.9000
 Authors@R: person("Christopher", "Baker", email = "chriscrewbaker@gmail.com",
   role = c("aut", "cre"))
