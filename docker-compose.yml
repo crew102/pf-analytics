@@ -45,12 +45,14 @@ services:
       - mysql-root-password
     restart: always
 
-  rstudio:
-    image: rocker/tidyverse
+  pfproto:
+    depends_on:
+      - mysql
+    build: ./prototype/pfproto
     ports:
-      - 8003:8787
+      - 8780:8787
     secrets:
-      - mysql-root-password
+      - pf-key
     restart: always
 
 secrets:
@@ -62,3 +64,5 @@ secrets:
     file: ./services/secrets/AUTH0_CLIENT_ID
   cookie-secret:
     file: ./services/secrets/COOKIE_SECRET
+  pf-key:
+    file: ./services/secrets/PF_KEY

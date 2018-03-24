@@ -1,0 +1,16 @@
+FROM rocker/tidyverse
+
+ADD . /root/pfproto
+WORKDIR /root/pfproto
+
+RUN apt-get update && apt-get install -y cron rsyslog
+
+# install r package deps
+RUN Rscript -e "devtools::install_deps(repos = 'https://mran.microsoft.com/snapshot/2018-03-20', upgrade = FALSE)" && \
+  Rscript -e "devtools::install()"
+
+# give cron a job to do
+RUN rsyslogd && \
+  env >> /etc/environment && \
+  crontab -u root /root/pfproto/inst/cron/daily-download-job && \
+  cron -L15
