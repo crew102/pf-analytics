@@ -31,8 +31,8 @@ RUN apt-get update && apt-get install -y \
     chmod +x /usr/bin/shiny-server.sh
 
 # copy shiny app code and shiny server config into container
-COPY ./pfapp /srv/shiny-server/sample-apps/pfapp
-COPY ./shiny-server.conf /etc/shiny-server/shiny-server.conf
+COPY . /srv/shiny-server/sample-apps/pfapp
+COPY ./inst/config/shiny-server.conf /etc/shiny-server/shiny-server.conf
 
 # install deps of r package (app code) then install package
 RUN cd /srv/shiny-server/sample-apps/pfapp && \

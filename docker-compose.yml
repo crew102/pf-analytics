@@ -36,11 +36,9 @@ services:
   shiny:
     depends_on:
       - auth
-    build: ./shiny-server
+    build: ./shiny-server/pfapp
     ports:
       - 3838:3838
-    volumes:
-      - ./shiny-server/shiny-server.conf:/etc/shiny-server/shiny-server.conf
     secrets:
       - mysql-root-password
     restart: always
