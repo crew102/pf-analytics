@@ -1,2 +1,1 @@
-PATH=/usr/lib/rstudio-server/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-* * * * * cd pfproto; Rscript -e "devtools::load_all(); dev_daily_download()"
+* * * * * /root/pfproto/inst/cron/daily-download.sh 2> /root/pfproto/inst/cron/cron-error
