@@ -3,6 +3,7 @@ get_pf_key <- function() {
   env_key <- Sys.getenv("PF_KEY")
   local_file <- "../../services/secrets/PF_KEY"
   dcompose_file <- "/run/secrets/pf-key"
+  local_file2 <- "PF_KEY"
 
   if (env_key != "") # either in docker container (not compose) or local
     env_key
@@ -10,6 +11,8 @@ get_pf_key <- function() {
     readLines(file(local_file))
   else if (file.exists(dcompose_file)) # docker compose
     readLines(file(dcompose_file))
+  else if (file.exists(local_file2))
+    readLines(local_file2)
   else
     stop("Couldn't find PF API key", call. = FALSE)
 }
