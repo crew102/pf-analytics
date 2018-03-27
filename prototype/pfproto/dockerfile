@@ -11,6 +11,9 @@ RUN Rscript -e "devtools::install_deps(repos = 'https://mran.microsoft.com/snaps
 
 # give cron a job to do
 RUN rsyslogd && \
-  env >> /etc/environment && \
+  chmod +x /root/pfproto/inst/cron/daily-download.sh && \
   crontab -u root /root/pfproto/inst/cron/daily-download-job && \
   cron -L15
+
+# make sure env vars inside container (at runtime) are used by cron
+CMD env >> /etc/environment; cron -f
