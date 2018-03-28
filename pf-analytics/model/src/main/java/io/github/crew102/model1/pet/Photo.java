@@ -1,4 +1,4 @@
-package io.github.crew102.pet;
+package io.github.crew102.model1.pet;
 
 import com.google.gson.annotations.SerializedName;
 
