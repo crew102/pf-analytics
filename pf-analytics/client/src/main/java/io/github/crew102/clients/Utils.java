@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Paths;
 
 public final class Utils {
 	
@@ -22,6 +23,11 @@ public final class Utils {
 	    
 	    reader.close();
 	    return builder.toString();
+	}
+	
+	public static void catDir() {
+		String dir = Paths.get(".").toAbsolutePath().normalize().toString();
+		System.out.println(dir);
 	}
 
 }
