@@ -11,7 +11,7 @@ import io.github.crew102.model2.PetTypes.StatusType;
 public class PetfinderPetRecord {
 	
 	// fields that will end up in "pet" table
-	int pet_id;
+  int pet_id;
 	String shelter_id;
 	String name;
 	StatusType status;
@@ -29,10 +29,10 @@ public class PetfinderPetRecord {
 	// needs to be changed to a datetime type 
 	String last_update;
 
-    // shelter fields
-    String city;
-    String state;
-    String zip;
+  // shelter fields
+  String city;
+  String state;
+  String zip;
     
 	public PetfinderPetRecord(int pet_id, String shelter_id, String name, StatusType status, AgeType age, SizeType size,
 			SexType sex, MixType mix, String description, OptionType[] option, String[] breed, Photo[] photo,

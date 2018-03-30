@@ -4,7 +4,7 @@ import io.github.crew102.model1.pet.Status;
 import io.github.crew102.model1.utils.StringWrapper;
 
 public class Header {
-	StringWrapper timestamp;
-	Status status;
-	StringWrapper version;
+  StringWrapper timestamp;
+  Status status;
+  StringWrapper version;
 }

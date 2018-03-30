@@ -9,22 +9,21 @@ import com.google.gson.JsonParseException;
 
 public class PetfinderPetRecordsDeser implements JsonDeserializer<PetfinderPetRecords> {
 	
-    @Override
-    public PetfinderPetRecords deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) 
-    		throws JsonParseException {
-        
-        JsonObject jobj = json.getAsJsonObject();
-        JsonElement jel = jobj.getAsJsonObject("petfinder").getAsJsonObject("pets").get("pet");
-                
-        if (jel.isJsonArray()) {
-        		PetfinderPetRecord[] somePets = context.deserialize(jel, PetfinderPetRecord[].class);
-            return new PetfinderPetRecords(somePets);
-        } else {
-        		PetfinderPetRecord somePets = context.deserialize(jel, PetfinderPetRecord.class);
-            return new PetfinderPetRecords(somePets);
-        }
-        
+  @Override
+  public PetfinderPetRecords deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) 
+      throws JsonParseException {
+      
+    JsonObject jobj = json.getAsJsonObject();
+    JsonElement jel = jobj.getAsJsonObject("petfinder").getAsJsonObject("pets").get("pet");
+            
+    if (jel.isJsonArray()) {
+    		PetfinderPetRecord[] somePets = context.deserialize(jel, PetfinderPetRecord[].class);
+      return new PetfinderPetRecords(somePets);
+    } else {
+    		PetfinderPetRecord somePets = context.deserialize(jel, PetfinderPetRecord.class);
+      return new PetfinderPetRecords(somePets);
     }
-	
+      
+  }
 
 }
