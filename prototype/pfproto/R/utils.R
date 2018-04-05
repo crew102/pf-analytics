@@ -1,21 +1,20 @@
-get_pf_key <- function() {
+get_secret <- function(var) {
 
-  env_key <- Sys.getenv("PF_KEY")
-  local_file <- "../../services/secrets/PF_KEY"
-  dcompose_file <- "/run/secrets/pf-key"
-  local_file2 <- "PF_KEY"
+  env_key <- Sys.getenv(var)
+  local_file <- file.path("../../services/secrets", var)
+  dcompose_file <- file.path("/run/secrets", gsub("_", "-", tolower(var)))
 
-  if (env_key != "") # either in docker container (not compose) or local
+  if (env_key != "") # local
     env_key
   else if (file.exists(local_file)) # local
-    readLines(file(local_file))
+    read_lines(file(local_file))
   else if (file.exists(dcompose_file)) # docker compose
-    readLines(file(dcompose_file))
-  else if (file.exists(local_file2))
-    readLines(local_file2)
+    read_lines(file(dcompose_file))
   else
-    stop("Couldn't find PF API key", call. = FALSE)
+    stop("Couldn't find ", var, call. = FALSE)
 }
+
+read_lines <- function(...) suppressWarnings(readLines(...))
 
 resp_to_json <- function(response) {
   httr::content(response, "text", encoding = "UTF-8") %>%
