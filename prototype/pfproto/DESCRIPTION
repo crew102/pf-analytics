@@ -14,7 +14,10 @@ Imports:
   jsonlite,
   lubridate,
   utils,
-  devtools
+  devtools,
+  RMySQL,
+  DBI,
+  pool
 Suggests: 
   testthat
 Encoding: UTF-8

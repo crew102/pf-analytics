@@ -33,3 +33,19 @@ maybe_gen_dir <- function(x) if (!dir.exists(x)) dir.create(x)
 time_to_fstring <- function() gsub("[^[:digit:]]", "-", Sys.time())
 
 lappy2 <- function(...) sapply(..., USE.NAMES = TRUE, simplify = FALSE)
+
+create_pool <- function(host = "mysql", password = get_secret("MYSQL_ROOT_PASSWORD")) {
+  pool::dbPool(
+    drv = RMySQL::MySQL(),
+    dbname = "pf_dev",
+    host = host,
+    port = 3306,
+    username = "root",
+    password = password
+  )
+}
+
+close_cons <- function() {
+  cons <- DBI::dbListConnections(RMySQL::MySQL())
+  sapply(cons, function(x) try(DBI::dbDisconnect(x)))
+}
