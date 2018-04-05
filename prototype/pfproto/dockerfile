@@ -16,4 +16,4 @@ RUN rsyslogd && \
   cron -L15
 
 # make sure env vars inside container (at runtime) are used by cron
-CMD env >> /etc/environment; cron -f
+CMD env >> /etc/environment; cron; /init
