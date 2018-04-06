@@ -1,19 +1,25 @@
 FROM rocker/tidyverse
 
-ADD . /root/pfproto
-WORKDIR /root/pfproto
+# first create user cbaker and add to sudo group. could do this by setting
+# USER and ROOT env vars (https://github.com/rocker-org/rocker/blob/master/rstudio/testing/userconf.sh).
+# note that a temp password is set for cbaker, which gets overridden in inst/overrides.sh
+RUN useradd -m -p password cbaker && adduser cbaker sudo
 
-RUN apt-get update && apt-get install -y cron rsyslog
+COPY . /home/cbaker/pfproto
+WORKDIR /home/cbaker/pfproto
 
-# install r package deps
-RUN Rscript -e "devtools::install_deps(repos = 'https://mran.microsoft.com/snapshot/2018-03-20', upgrade = FALSE)" && \
-  Rscript -e "devtools::install()"
+# install cron, pfproto r package deps, and pfproto
+RUN apt-get update && apt-get install -y cron && \
+  Rscript -e "devtools::install_deps(repos = 'https://mran.microsoft.com/snapshot/2018-03-20', upgrade = FALSE); devtools::install()"
 
 # give cron a job to do
-RUN rsyslogd && \
-  chmod +x /root/pfproto/inst/cron/daily-download.sh && \
-  crontab -u root /root/pfproto/inst/cron/daily-download-job && \
-  cron -L15
+RUN crontab -u cbaker /home/cbaker/pfproto/inst/cron/daily-download-job
 
-# make sure env vars inside container (at runtime) are used by cron
-CMD env >> /etc/environment; cron; /init
+# make sure env vars inside container (at run-time) are used by cron, set
+# various file permission/security settings (this can't be done when building
+# image b/c may need to map local code into container which would change overwrite
+# files), start cron daemon, then start rstudio server
+CMD env >> /etc/environment && \
+  chmod +x inst/overrides.sh && inst/overrides.sh && \
+  cron && \
+  /init

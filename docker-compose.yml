@@ -31,7 +31,7 @@ services:
     volumes:
       - ./services/config/mysql.cnf:/etc/mysql/conf.d/mysql.cnf
     environment:
-      # seen docker secretes section at https://hub.docker.com/_/mysql/
+      # see docker secrets section at https://hub.docker.com/_/mysql/
       MYSQL_ROOT_PASSWORD_FILE: /run/secrets/mysql-root-password
 
   shiny:
@@ -53,10 +53,7 @@ services:
     secrets:
       - pf-key
       - mysql-root-password
-      - rstudio-root-password
-    environment:
-      # https://github.com/rocker-org/rocker/wiki/Using-the-RStudio-image#custom-use
-      PASSWORD: /run/secrets/rstudio-root-password
+      - rstudio-cbaker-password
     restart: always
 
 secrets:
@@ -70,5 +67,5 @@ secrets:
     file: ./services/secrets/COOKIE_SECRET
   pf-key:
     file: ./services/secrets/PF_KEY
-  rstudio-root-password:
-    file: ./services/secrets/RSTUDIO_ROOT_PASSWORD
+  rstudio-cbaker-password:
+    file: ./services/secrets/RSTUDIO_CBAKER_PASSWORD
