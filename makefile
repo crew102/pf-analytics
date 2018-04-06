@@ -1,7 +1,7 @@
 all: down build-pfproto up
 
 down:
-	docker-compose down
+	- docker-compose down # leading `-` allows error
 	
 build-pfproto:
 	docker-compose build --no-cache pfproto
