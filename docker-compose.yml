@@ -55,6 +55,8 @@ services:
       - mysql-root-password
       - rstudio-cbaker-password
     restart: always
+    volumes:
+      - ./prototype/pfproto:/home/cbaker/pfproto
 
 secrets:
   mysql-root-password:
