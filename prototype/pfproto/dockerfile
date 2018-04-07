@@ -5,6 +5,9 @@ FROM rocker/tidyverse
 # note that a temp password is set for cbaker, which gets overridden in inst/overrides.sh
 RUN useradd -m -p password cbaker && adduser cbaker sudo
 
+# allow root access from within rstudio server
+ENV ROOT="TRUE"
+
 COPY . /home/cbaker/pfproto
 WORKDIR /home/cbaker/pfproto
 
