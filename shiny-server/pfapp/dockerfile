@@ -41,4 +41,4 @@ RUN cd /srv/shiny-server/sample-apps/pfapp && \
 
 EXPOSE 3838
 
-CMD ["/usr/bin/shiny-server.sh"]
+CMD /usr/bin/shiny-server.sh
