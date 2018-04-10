@@ -12,7 +12,7 @@ public class PetfinderPetRecords {
   
   public PetfinderPetRecords(PetfinderPetRecord[] pets) {
     for (int i = 0; i < pets.length; i++) {
-        PetfinderPetRecord onePet = pets[i];
+      PetfinderPetRecord onePet = pets[i];
       petlist.add(onePet);
     }
   }
