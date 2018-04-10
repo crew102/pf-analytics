@@ -5,9 +5,9 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonDeserializer;
 import io.github.crew102.model2.PetfinderPetRecord;
-import io.github.crew102.model2.PetfinderPetRecordDeser;
 import io.github.crew102.model2.PetfinderPetRecords;
-import io.github.crew102.model2.PetfinderPetRecordsDeser;
+import io.github.crew102.parsers.PetfinderPetRecordDeser;
+import io.github.crew102.parsers.PetfinderPetRecordsDeser;
 
 public class Model2TestParser {
   

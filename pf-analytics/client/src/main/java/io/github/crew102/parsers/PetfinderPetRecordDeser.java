@@ -1,4 +1,4 @@
-package io.github.crew102.model2;
+package io.github.crew102.parsers;
 
 import java.lang.reflect.Type;
 import java.time.LocalDateTime;
@@ -9,6 +9,8 @@ import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
+import io.github.crew102.model2.PetfinderPetRecord;
+import io.github.crew102.model2.Photo;
 import io.github.crew102.model2.PetTypes.AgeType;
 import io.github.crew102.model2.PetTypes.MixType;
 import io.github.crew102.model2.PetTypes.OptionType;
