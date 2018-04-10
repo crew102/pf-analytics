@@ -13,14 +13,17 @@ public class PetfinderPetRecordsDeser implements JsonDeserializer<PetfinderPetRe
   public PetfinderPetRecords deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) 
       throws JsonParseException {
       
-    JsonObject jobj = json.getAsJsonObject();
-    JsonElement jel = jobj.getAsJsonObject("petfinder").getAsJsonObject("pets").get("pet");
+    JsonObject jobj = json.getAsJsonObject().getAsJsonObject("petfinder");
             
-    if (jel.isJsonArray()) {
+    // api doesn't wrap "pet" object in "pets" object when just one pet
+    if (jobj.has("pets")) {
+      JsonElement jel = jobj.getAsJsonObject("pets").get("pet");
     		PetfinderPetRecord[] somePets = context.deserialize(jel, PetfinderPetRecord[].class);
       return new PetfinderPetRecords(somePets);
     } else {
+      JsonElement jel = jobj.get("pet");
     		PetfinderPetRecord somePets = context.deserialize(jel, PetfinderPetRecord.class);
+    		// PetfinderPetRecords() will create an array of records if passed a single record
       return new PetfinderPetRecords(somePets);
     }
       

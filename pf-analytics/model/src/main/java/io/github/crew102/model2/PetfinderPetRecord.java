@@ -1,6 +1,6 @@
 package io.github.crew102.model2;
 
-import io.github.crew102.model1.pet.Photo;
+import java.time.LocalDateTime;
 import io.github.crew102.model2.PetTypes.AgeType;
 import io.github.crew102.model2.PetTypes.MixType;
 import io.github.crew102.model2.PetTypes.OptionType;
@@ -26,8 +26,8 @@ public class PetfinderPetRecord {
 	String[] breed;
 	Photo[] photo;
 	
-	// needs to be changed to a datetime type 
-	String last_update;
+	// misc fields
+	LocalDateTime last_update;
 
   // shelter fields
   String city;
@@ -35,8 +35,8 @@ public class PetfinderPetRecord {
   String zip;
     
 	public PetfinderPetRecord(int pet_id, String shelter_id, String name, StatusType status, AgeType age, SizeType size,
-			SexType sex, MixType mix, String description, OptionType[] option, String[] breed, Photo[] photo,
-			String last_update, String city, String state, String zip) {
+			SexType sex, MixType mix, String description, OptionType[] option, String[] breed,  Photo[] photo,
+			LocalDateTime last_update, String city, String state, String zip) {
 		this.pet_id = pet_id;
 		this.shelter_id = shelter_id;
 		this.name = name;
@@ -55,10 +55,7 @@ public class PetfinderPetRecord {
 		this.zip = zip;
 	}
 	
-	// for minimal example of parsing
-	public PetfinderPetRecord(int pet_id, StatusType status) {
-		this.pet_id = pet_id;
-		this.status = status;
+	public PetfinderPetRecord() {
+	  
 	}
-
 }
