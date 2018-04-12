@@ -9,16 +9,16 @@ import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
-import io.github.crew102.model2.PetfinderPetRecord;
-import io.github.crew102.model2.Photo;
-import io.github.crew102.model2.PetTypes.AgeType;
-import io.github.crew102.model2.PetTypes.MixType;
-import io.github.crew102.model2.PetTypes.OptionType;
-import io.github.crew102.model2.PetTypes.SexType;
-import io.github.crew102.model2.PetTypes.SizeType;
-import io.github.crew102.model2.PetTypes.StatusType;
+import io.github.crew102.rawresponses.PetfinderPetRecord;
+import io.github.crew102.rawresponses.Photo;
+import io.github.crew102.rawresponses.PetTypes.AgeType;
+import io.github.crew102.rawresponses.PetTypes.MixType;
+import io.github.crew102.rawresponses.PetTypes.OptionType;
+import io.github.crew102.rawresponses.PetTypes.SexType;
+import io.github.crew102.rawresponses.PetTypes.SizeType;
+import io.github.crew102.rawresponses.PetTypes.StatusType;
 
-public class PetfinderPetRecordDeser implements JsonDeserializer<PetfinderPetRecord> {
+public class PetDeserializer implements JsonDeserializer<PetfinderPetRecord> {
   
   private JsonObject mainJsonObject;
 

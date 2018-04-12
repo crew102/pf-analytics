@@ -1,4 +1,4 @@
-package io.github.crew102.model2;
+package io.github.crew102.rawresponses;
 
 public class Photo {
   
