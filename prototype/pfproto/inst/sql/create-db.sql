@@ -40,6 +40,10 @@ create table if not exists shelter (
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
 # "Analytics" tables used to track days on petfinder (dof)
+create table if not exists initial_pets (
+  pet_id int not null
+) ENGINE = InnoDB DEFAULT CHARSET = utf8;
+
 create table if not exists shelter_last_update (
   shelter_id varchar(10) not null,
   last_update datetime not null
