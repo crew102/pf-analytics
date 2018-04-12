@@ -1,4 +1,5 @@
-p_find <- function(pf_key = get_pf_key(),
+# get petfinder data for a given location
+p_find <- function(pf_key = get_secret("PF_KEY"),
                    location = "20008",
                    output = "full",
                    count = 100,
