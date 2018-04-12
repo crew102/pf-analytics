@@ -9,7 +9,7 @@ import io.github.crew102.exceptions.SecretNotFoundException;
 
 public final class Utils {
   
-  public static String readJSONfile(String file) throws IOException {
+  public static String readFile(String file) throws IOException {
     
     File myFile = new File(file);
     FileReader filereader = new FileReader(myFile);

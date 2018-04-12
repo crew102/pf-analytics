@@ -1,4 +1,4 @@
-package io.github.crew102.model2;
+package io.github.crew102.rawresponses;
 
 public class PetTypes {
   
@@ -23,7 +23,7 @@ public class PetTypes {
   }
   
   public enum OptionType {
-    specialNeeds, noDogs, noCats, noKids, noClaws, hasShots, housebroken, altered
+    specialNeeds, noDogs, noCats, noKids, noClaws, hasShots, housebroken, altered, housetrained
   }
 
 }
