@@ -31,17 +31,17 @@ public class PetDeserializer implements JsonDeserializer<PetfinderPetRecord> {
     // AI = always exists
     
     int pet_id = getT("id").getAsInt(); // pet_id (AI)
-    String shelter_id = getT("shelterId").getAsString(); // sheter_id (AI)
-    String name = getT("name").getAsString(); // name (AI)
-    String description = getT("description").getAsString(); // description (AI)
+    String shelter_id = getTasString("shelterId"); // sheter_id (AI)
+    String name = getTasString("name"); // name (AI)
+    String description = getTasString("description"); // description (AI)
     
-    LocalDateTime last_update = parseDateTime(getT("lastUpdate").getAsString()); // last_update (AI)
+    LocalDateTime last_update = parseDateTime(getTasString("lastUpdate")); // last_update (AI)
 
-    StatusType status = StatusType.valueOf(getT("status").getAsString()); // status (AI)
-    AgeType age = AgeType.valueOf(getT("age").getAsString()); // age (AI)
-    SizeType size = SizeType.valueOf(getT("size").getAsString()); // size (AI)
-    SexType sex = SexType.valueOf(getT("sex").getAsString()); // sex (AI)
-    MixType mix = MixType.valueOf(getT("mix").getAsString()); // mix (AI)
+    StatusType status = StatusType.valueOf(getTasString("status")); // status (AI)
+    AgeType age = AgeType.valueOf(getTasString("age")); // age (AI)
+    SizeType size = SizeType.valueOf(getTasString("size")); // size (AI)
+    SexType sex = SexType.valueOf(getTasString("sex")); // sex (AI)
+    MixType mix = MixType.valueOf(getTasString("mix")); // mix (AI)
         
     String[] breed = parseBreed(); // breed (AI)
     OptionType[] option = parseOption(); // option ("options" = AI, "option" != AI)
@@ -70,6 +70,15 @@ public class PetDeserializer implements JsonDeserializer<PetfinderPetRecord> {
     // we have to call getAsJsonObject here b/c we can't call get("t") on JsonElement, so
     // basically we have to cast Json back to JsonObject before we can parse it further
     return mainJsonObject.getAsJsonObject(field).get("$t");
+  }
+  
+  private String getTasString(String field) {
+    JsonElement el = getT(field);
+    if (el == null) {
+      return (String) null;
+    } else {
+      return el.getAsString();
+    }
   }
   
   private LocalDateTime parseDateTime(String dt) {
