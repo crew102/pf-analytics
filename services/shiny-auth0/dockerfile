@@ -2,7 +2,7 @@ FROM node
 
 RUN git clone https://github.com/crew102/shiny-auth0.git; \
   cd shiny-auth0; \
-  npm install express fs
+  npm install
 
 WORKDIR shiny-auth0
 
