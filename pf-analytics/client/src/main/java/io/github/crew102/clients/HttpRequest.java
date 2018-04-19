@@ -12,16 +12,12 @@ import io.github.crew102.exceptions.SecretNotFoundException;
 
 public class HttpRequest {
   
-  String method = "pet.find";
+  String method;
   Map<String, String> arglist;
   
   public HttpRequest(String method, Map<String, String> arglist) {
    this.method = method;
    this.arglist = arglist;
-  }
-  
-  public HttpRequest(Map<String, String> arglist) {
-    this.arglist = arglist;
   }
   
  // should i specify that makeRequest can throw any of these, or just use Exception?
