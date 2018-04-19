@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class PetfinderPetRecords {
   
-  ArrayList<PetfinderPetRecord> petlist = new ArrayList<PetfinderPetRecord>();
+  private ArrayList<PetfinderPetRecord> petlist = new ArrayList<PetfinderPetRecord>();
   
   public PetfinderPetRecords(PetfinderPetRecord apet) {
     petlist.add(apet);
@@ -15,6 +15,10 @@ public class PetfinderPetRecords {
       PetfinderPetRecord onePet = pets[i];
       petlist.add(onePet);
     }
+  }
+  
+  public ArrayList<PetfinderPetRecord> getPetList() {
+    return this.petlist;
   }
 
 }
