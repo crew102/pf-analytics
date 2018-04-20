@@ -24,8 +24,6 @@ services:
 
   mysql:
     image: mysql
-    ports:
-      - 3307:3306
     secrets:
       - mysql-root-password
     volumes:

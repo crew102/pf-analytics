@@ -21,7 +21,7 @@ pf-analytics
     * listens on 8780
     * dockerfile that installs prototype code. starts cron and deploys rstudio server (for interactive dev) at run-time.
 5. mysql server 
-    * listens on 3307
+    * listens on 3306
     * mysql image
 
 * secrets used by services include: `MYSQL_ROOT_PASSWORD`, `AUTH0_CLIENT_SECRET`, `AUTH0_CLIENT_ID`, `COOKIE_SECRET`, `PF_KEY`, and `RSTUDIO_CBAKER_PASSWORD`. These need to be specified in services/secrets/ dir, one secret per file.
