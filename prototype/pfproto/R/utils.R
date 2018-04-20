@@ -39,7 +39,7 @@ create_pool <- function(host = "mysql", password = get_secret("MYSQL_ROOT_PASSWO
     drv = RMySQL::MySQL(),
     dbname = "pf_dev",
     host = host,
-    port = 3306,
+    port = 3307,
     username = "root",
     password = password
   )
