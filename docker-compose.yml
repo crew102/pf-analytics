@@ -7,7 +7,7 @@ services:
     ports:
       - 8080:8080
     volumes:
-      - ./services/config/nginx.conf:/etc/nginx/nginx.conf
+      - ./services/conf/nginx.conf:/etc/nginx/nginx.conf
     restart: always
 
   auth:
@@ -27,7 +27,7 @@ services:
     secrets:
       - mysql-root-password
     volumes:
-      - ./services/config/mysql.cnf:/etc/mysql/conf.d/mysql.cnf
+      - ./services/conf/mysql.cnf:/etc/mysql/conf.d/mysql.cnf
     environment:
       # see docker secrets section at https://hub.docker.com/_/mysql/
       MYSQL_ROOT_PASSWORD_FILE: /run/secrets/mysql-root-password
