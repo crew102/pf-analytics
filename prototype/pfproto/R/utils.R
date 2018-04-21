@@ -14,7 +14,10 @@ get_secret <- function(var) {
     stop("Couldn't find ", var, call. = FALSE)
 }
 
-read_lines <- function(...) suppressWarnings(readLines(...))
+read_lines <- function(conn, ...) {
+  on.exit(close(conn))
+  suppressWarnings(readLines(conn, ...))
+}
 
 resp_to_json <- function(response) {
   httr::content(response, "text", encoding = "UTF-8") %>%
@@ -53,7 +56,6 @@ run_q.character <- function(query, conn)
   suppressWarnings(pool::dbGetQuery(conn = conn, statement = query))
 
 run_q.file <- function(query, conn) {
-  on.exit(close(query))
   fi <- read_lines(query)
   nocomments <- gsub("#.*", "", fi)
   j <- paste0(nocomments, collapse = " ")
