@@ -1,11 +1,11 @@
 FROM node
 
-RUN git clone https://github.com/crew102/shiny-auth0.git; \
-  cd shiny-auth0; \
+RUN git clone https://github.com/crew102/shiny-auth0-plus.git; \
+  cd shiny-auth0-plus; \
   npm install
 
-WORKDIR shiny-auth0
+WORKDIR shiny-auth0-plus
 
-COPY ./.env /shiny-auth0/.env
+COPY ./.env /shiny-auth0-plus/.env
 
 CMD npm start

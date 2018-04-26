@@ -13,7 +13,7 @@ pf-analytics
 2. shiny-auth0 proxy 
     * listens on 3000, forwards requests to shiny server
     * dockerfile that sets up customized version of shiny-auth0
-    * requires .env file (described in https://github.com/crew102/shiny-auth0) at services/shiny-auth0/.env
+    * requires .env file (described in https://github.com/crew102/shiny-auth0-plus) at services/shiny-auth0/.env
 3. shiny server 
     * listens on 3838
     * dockerfile that installs rstudio server on top of rocker/tidyverse, sets server config, and installs app code. deploys server at run-time.

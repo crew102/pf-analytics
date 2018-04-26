@@ -59,6 +59,7 @@ services:
       - ./prototype/pfproto:/home/cbaker/pfproto
 
 secrets:
+
   mysql-root-password:
     file: ./services/secrets/MYSQL_ROOT_PASSWORD
   auth0-client-secret:
