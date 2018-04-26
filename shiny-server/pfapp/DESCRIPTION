@@ -9,7 +9,12 @@ Description: More about what it does (maybe more than one line)
 License: What license is it under?
 Imports:
   shiny,
-  devtools
+  devtools,
+  jose,
+  httr,
+  jsonlite,
+  magrittr,
+  dplyr
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.0.1

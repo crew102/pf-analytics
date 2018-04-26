@@ -2,4 +2,6 @@
 
 export(server)
 export(ui)
+import(dplyr)
+import(magrittr)
 import(shiny)

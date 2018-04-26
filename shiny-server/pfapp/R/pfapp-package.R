@@ -1,6 +1,6 @@
 #' pfapp
 #'
 #' @docType package
-#' @import shiny
+#' @import shiny dplyr magrittr
 #' @name pfapp
 NULL
