@@ -42,6 +42,8 @@ services:
     build: ./shiny-server/pfapp
     secrets:
       - mysql-root-password
+    volumes:
+      - ./services/conf/shiny-server.conf:/etc/shiny-server/shiny-server.conf
     restart: always
 
   pfproto:
