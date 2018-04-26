@@ -31,10 +31,10 @@ RUN apt-get update && apt-get install -y \
     chmod +x /usr/bin/shiny-server.sh
 
 # copy shiny app code into container
-COPY . /srv/shiny-server/sample-apps/pfapp
+COPY . /srv/shiny-server/pfapp
 
 # install deps of r package (app code) then install package
-RUN cd /srv/shiny-server/sample-apps/pfapp && \
+RUN cd /srv/shiny-server/pfapp && \
   Rscript -e "devtools::install_deps(repos = 'https://mran.microsoft.com/snapshot/2018-02-20')" && \
   Rscript -e "devtools::install()"
 

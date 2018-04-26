@@ -20,7 +20,7 @@ services:
       - auth0-client-secret
       - auth0-client-id
       - cookie-secret
-    # just for dev:
+    # volume for dev:
     volumes:
       - ./services/shiny-auth0/.env:/shiny-auth0/.env
     restart: always
@@ -44,6 +44,8 @@ services:
       - mysql-root-password
     volumes:
       - ./services/conf/shiny-server.conf:/etc/shiny-server/shiny-server.conf
+      # volume for dev:
+      - ./shiny-server/pfapp:/srv/shiny-server/pfapp
     restart: always
 
   pfproto:
