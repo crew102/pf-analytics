@@ -68,3 +68,10 @@ close_cons <- function() {
   cons <- DBI::dbListConnections(RMySQL::MySQL())
   sapply(cons, function(x) try(DBI::dbDisconnect(x)))
 }
+
+apply_prefs <- function() {
+  setsfi <- "/home/cbaker/.rstudio/monitored/user-settings/user-settings"
+  x <- readLines(setsfi)
+  y <- readLines("inst/user-preferences")
+  writeLines(c(x, y), file(setsfi))
+}
