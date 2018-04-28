@@ -27,9 +27,9 @@ create table if not exists pet_breed (
 
 create table if not exists pet_photo (
   pet_id int not null,
-  photo_id int not null,
   size varchar(3) not null,
-  url varchar(255) default null
+  url varchar(255) default null,
+  photo_id int not null
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
 create table if not exists shelter (
@@ -48,12 +48,16 @@ create table if not exists initial_pets (
   pet_id int not null
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
+create table if not exists blacklisted_pets (
+  pet_id int not null
+) ENGINE = InnoDB DEFAULT CHARSET = utf8;
+
 create table if not exists shelter_last_update (
   shelter_id varchar(10) not null,
   last_update datetime not null
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
-create table if not exists pet_current_dof (
+create table if not exists pet_tracking (
   pet_id int not null,
   first_seen datetime not null,
   current_dof int null,
