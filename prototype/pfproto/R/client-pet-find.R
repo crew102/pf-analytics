@@ -55,6 +55,5 @@ as_pftibble <- function(p_find_out) {
     city = pet$contact$city$`$t`,
     state = pet$contact$state$`$t`,
     zip = pet$contact$zip$`$t`
-  ) %>%
-    add_class("pftibble")
+  )
 }
