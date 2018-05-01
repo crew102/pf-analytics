@@ -10,3 +10,12 @@ dev_daily_download <- function() {
 
   saveRDS(dpet, file = file)
 }
+
+cache_files <- function() {
+  file <- list.files("cache", full.names = TRUE)
+  tibble(
+    file = file,
+    date = lubridate::parse_date_time(gsub("[^[:digit:]-]", "", file), "ymdHMS")
+  ) %>%
+    arrange(date)
+}
