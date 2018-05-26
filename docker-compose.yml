@@ -29,8 +29,8 @@ services:
     image: mysql
     secrets:
       - mysql-root-password
-    volumes:
-      - ./services/conf/mysql.cnf:/etc/mysql/conf.d/mysql.cnf
+    #volumes:
+    #  - ./services/conf/mysql.cnf:/etc/mysql/conf.d/mysql.cnf
     environment:
       # see docker secrets section at https://hub.docker.com/_/mysql/
       MYSQL_ROOT_PASSWORD_FILE: /run/secrets/mysql-root-password
