@@ -38,8 +38,17 @@ time_to_fstring <- function() gsub("[^[:digit:]]", "-", Sys.time())
 lappy2 <- function(...) sapply(..., USE.NAMES = TRUE, simplify = FALSE)
 
 apply_prefs <- function() {
-  setsfi <- "/home/cbaker/.rstudio/monitored/user-settings/user-settings"
-  x <- readLines(setsfi)
-  y <- readLines("inst/user-preferences")
-  writeLines(c(x, y), file(setsfi))
+
+  my_prefs <- "inst/rstudio-preferences/user-preferences"
+  existing_prefs <- "~/.rstudio/monitored/user-settings/user-settings"
+
+  my_shorts <- "inst/rstudio-preferences/rstudio-bindings.json"
+  existing_shorts <- "~/.R/rstudio/keybindings/rstudio_bindings.json"
+
+  mapply(
+    file.copy,
+    from = c(my_prefs, my_shorts),
+    to = c(existing_prefs, existing_shorts),
+    MoreArgs = list(overwrite = TRUE)
+  )
 }
