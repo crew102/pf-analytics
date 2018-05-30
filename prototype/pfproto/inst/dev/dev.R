@@ -2,16 +2,17 @@ library(dplyr)
 library(tidyr)
 library(devtools)
 library(lubridate)
+
 load_all()
 
-file_df <- cache_files()
+files_df <- cache_files()
 
 pool <- create_pool()
 
 gen_db(pool)
 
 if (is_first_day(pool)) {
-  write_init_pets(readRDS(file_df$file[1]), pool)
+  write_init_pets(readRDS(files_df$file[1]), pool)
   # update db_update table
 } else {
   #  update_db()
@@ -30,8 +31,8 @@ existing_pets <- tibble(
   )
 )
 
-today_data <- readRDS(file_df$file[2])
-today_day <- file_df$date[2]
+today_data <- readRDS(files_df$file[2])
+today_day <- files_df$date[2]
 
 new_pets <-
   today_data %>%
