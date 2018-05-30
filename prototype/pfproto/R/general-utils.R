@@ -44,6 +44,7 @@ apply_prefs <- function() {
 
   my_shorts <- "inst/rstudio-preferences/rstudio-bindings.json"
   existing_shorts <- "~/.R/rstudio/keybindings/rstudio_bindings.json"
+  dir.create(dirname(existing_shorts), recursive = TRUE)
 
   mapply(
     file.copy,
