@@ -64,7 +64,7 @@ create table if not exists pet_tracking (
   current_dof_last_update datetime null
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
-create table if not exists pet_final_dof (
+create table if not exists pet_dof (
   pet_id int not null,
-  final_dof int not null
+  dof int not null
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8;

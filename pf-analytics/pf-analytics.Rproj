@@ -11,7 +11,3 @@ Encoding: UTF-8
 
 RnwWeave: Sweave
 LaTeX: XeLaTeX
-
-AutoAppendNewline: Yes
-
-BuildType: Makefile

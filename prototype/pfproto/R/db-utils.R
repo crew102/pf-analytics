@@ -25,7 +25,7 @@ run_q.file <- function(query, conn) {
 
 close_cons <- function() {
   cons <- DBI::dbListConnections(RMySQL::MySQL())
-  sapply(cons, function(x) try(DBI::dbDisconnect(x)))
+  lapply(cons, function(x) try(DBI::dbDisconnect(x)))
 }
 
 copy_to2 <- function(...) copy_to(..., temporary = FALSE, overwrite = TRUE)

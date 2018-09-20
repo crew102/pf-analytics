@@ -13,3 +13,5 @@ build:
 	docker-compose build --no-cache
 	
 refresh: down build up
+
+.PHONY: down build-pfproto up build refresh

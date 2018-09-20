@@ -1,9 +1,7 @@
 # Function to find all distinct citystates that are close to a given citystate
 # center
 distinct_citystates <- function(citystate_centers) {
-  lapply(citystate_centers, nrby_citystates) %>%
-    do.call(c, .) %>%
-    unique()
+  lapply(citystate_centers, nrby_citystates) %>% do.call(c, .) %>% unique()
 }
 
 citystate_centers <- c(

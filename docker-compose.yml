@@ -1,5 +1,7 @@
 version: '3.1'
 
+# all volumes are mapped for the purpose of development
+
 services:
 
   nginx:
@@ -42,9 +44,9 @@ services:
     build: ./shiny-server/pfapp
     secrets:
       - mysql-root-password
+    # volumes for dev:
     volumes:
-      # - ./services/conf/shiny-server.conf:/etc/shiny-server/shiny-server.conf
-      # volume for dev:
+      - ./services/conf/shiny-server.conf:/etc/shiny-server/shiny-server.conf
       - ./shiny-server/pfapp:/srv/shiny-server/pfapp
     restart: always
 

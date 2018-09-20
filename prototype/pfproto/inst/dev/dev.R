@@ -4,10 +4,11 @@ library(devtools)
 library(lubridate)
 
 load_all()
-
 files_df <- cache_files()
-
 pool <- create_pool()
+
+# DAY 1 ---------------------------
+# initial_pets
 
 gen_db(pool)
 
@@ -18,8 +19,9 @@ if (is_first_day(pool)) {
   #  update_db()
 }
 
-##### update_db on day 2 (or any other day)
-
+# DAY X first set of "pet tracking" table updates ---------------------------
+# blacklisted_pets, pet_tracking
+# (db_update, shelter_last_update and pet_dof in second set of updates)
 dbtbls <- fetch_all_tables(pool)
 
 existing_pets <- tibble(
@@ -27,7 +29,7 @@ existing_pets <- tibble(
     dbtbls$initial_pets$pet_id,
     dbtbls$blacklisted_pets$pet_id,
     dbtbls$pet_tracking$pet_id,
-    dbtbls$pet_final_dof$pet_id
+    dbtbls$pet_dof$pet_id
   )
 )
 
@@ -38,9 +40,10 @@ new_pets <-
   today_data %>%
     anti_join(existing_pets, by = "pet_id") %>%
     mutate(days_since_last_update = interval(last_update, today_day) / days(1)) %>%
+    # a new pet must not have been seen before and have been recently added to pf (within last 2 days)
     mutate(should_blacklist = abs(days_since_last_update) >= 2)
 
-# update blacklist
+# update blacklisted_pets
 new_blacklist <- new_pets %>% filter(should_blacklist)
 if (nrow(new_blacklist)) {
   new_tbl_blacklist <- tibble(
@@ -49,14 +52,10 @@ if (nrow(new_blacklist)) {
       new_blacklist$pet_id
     )
   )
-###  new_tbl_blacklist %>% copy_to2(pool, ., "blacklisted_pets")
+  new_tbl_blacklist %>% copy_to2(pool, ., "blacklisted_pets")
 }
 
-unnest_one_pftbl <- function(name, df) {
-  nd2 <- df[, c("pet_id", name)]
-  nd2[!is.na(nd2[, 2]), ] %>% unnest()
-}
-
+# update pet_tracking table
 new_tracking <- new_pets %>% filter(!should_blacklist)
 have_new_tracking <- nrow(new_tracking) != 0
 if (have_new_tracking) {
@@ -71,15 +70,20 @@ if (have_new_tracking) {
 } else {
   new_tbl_tracking <- dbtbls$pet_tracking
 }
-# new_tbl_tracking %>% copy_to2(pool, ., "pet_tracking")
+new_tbl_tracking %>% copy_to2(pool, ., "pet_tracking")
 
-  #### NON-ANALYTICS TABLES UPDATES
+# DAY X info table updates ---------------------------
+# pet, pet_option, pet_breed, pet_photo, shelter
+unnest_one_pftbl <- function(name, df) {
+  nd2 <- df[, c("pet_id", name)]
+  nd2[!is.na(nd2[, 2]), ] %>% unnest()
+}
 
 if (have_new_tracking) {
   # pet table update
   rbind(dbtbls$pet, new_tracking[, colnames(dbtbls$pet)]) %>% copy_to2(pool, ., "pet")
 
-  # pet long table updates
+  # pet_ table updates
   pet_tables <- c("option", "breed", "photo")
   pet_tables_dfs <- lappy2(pet_tables, unnest_one_pftbl, df = new_tracking)
 
@@ -88,9 +92,6 @@ if (have_new_tracking) {
     function(x) rbind(pet_tables_dfs[[x]], dbtbls[[x]]) %>% copy_to2(pool, ., x)
   )
 }
-
-
-
 
 today_shelters <-
   today_data %>%
@@ -101,7 +102,8 @@ rbind(dbtbls$shelter, today_shelters) %>%
   distinct() %>%
   copy_to2(pool, ., "shelter")
 
-
+# DAY X second set of "pet tracking" table updates ---------------------------
+# db_update, shelter_last_update and pet_dof
 shelter_last_update_today <-
   today_data %>%
     group_by(shelter_id) %>%
@@ -112,4 +114,4 @@ shelter_last_update <-
     group_by(shelter_id) %>%
     summarise(last_update = max(last_update))
 
-# now see if we can update current_dof for pets that have been in tracking tbl
+# now see if we can update current_dof for pets that have been in pet_tracking
