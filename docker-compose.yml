@@ -31,6 +31,8 @@ services:
     image: mysql:5.7
     secrets:
       - mysql-root-password
+    ports:
+      - 3308:3306
     volumes:
       - ./services/conf/mysql.cnf:/etc/mysql/conf.d/mysql.cnf
     environment:
