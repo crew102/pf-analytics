@@ -15,6 +15,8 @@ WORKDIR /home/cbaker/pfproto
 RUN apt-get update && apt-get install -y cron && \
   Rscript -e "devtools::install_deps(repos = 'https://mran.microsoft.com/snapshot/2018-03-20', upgrade = FALSE); devtools::install()"
 
+# Rscript -e "devtools::install_github('r-dbi/RMySQL', ref = '2128ad61bb2d2503e105c4daeaa96a69b7bac888')"
+
 RUN crontab -u cbaker /home/cbaker/pfproto/inst/cron/daily-download-job
 
 # make sure env vars inside container (at run-time) are used by cron, set

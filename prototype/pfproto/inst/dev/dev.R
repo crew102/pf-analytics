@@ -25,6 +25,11 @@ if (is_first_day(pool)) {
 db_update <- function(today_data, today_day, pool) {
 
   dbtbls <- fetch_all_tables(pool)
+  if (nrow(dbtbls$shelter_last_update)) {
+    if (!is.POSIXct(dbtbls$shelter_last_update$last_update)) {
+      browser()
+    }
+  }
 
   existing_pets <- tibble(
     pet_id = c(
@@ -37,10 +42,10 @@ db_update <- function(today_data, today_day, pool) {
 
   new_pets <-
     today_data %>%
-    anti_join(existing_pets, by = "pet_id") %>%
-    mutate(days_since_last_update = interval(last_update, today_day) / days(1)) %>%
-    # a new pet must not have been seen before and have been recently added to pf (within last 2 days)
-    mutate(should_blacklist = abs(days_since_last_update) >= 2)
+      anti_join(existing_pets, by = "pet_id") %>%
+      mutate(days_since_last_update = interval(last_update, today_day) / days(1)) %>%
+      # a new pet must not have been seen before and have been recently added to pf (within last 2 days)
+      mutate(should_blacklist = abs(days_since_last_update) >= 2)
 
   # update blacklisted_pets
   # blackedlisted pets are those new pets (pet_ids we haven't seen before) that
@@ -82,7 +87,8 @@ db_update <- function(today_data, today_day, pool) {
 
   if (have_new_tracking) {
     # pet table update
-    rbind(dbtbls$pet, new_pets_to_track[, colnames(dbtbls$pet)]) %>% copy_to2(pool, ., "pet")
+    rbind(dbtbls$pet, new_pets_to_track[, colnames(dbtbls$pet)]) %>%
+      copy_to2(pool, ., "pet")
 
     # pet_ table updates
     pet_tables <- c("option", "breed", "photo")
@@ -90,14 +96,15 @@ db_update <- function(today_data, today_day, pool) {
 
     lappy2(
       pet_tables,
-      function(x) rbind(pet_tables_dfs[[x]], dbtbls[[x]]) %>% copy_to2(pool, ., x)
+      function(x) rbind(pet_tables_dfs[[x]], dbtbls[[x]]) %>%
+        copy_to2(pool, ., paste0("pet_", x))
     )
   }
 
   today_shelters <-
     today_data %>%
-    select(shelter_id, city, state, zip) %>%
-    distinct()
+      select(shelter_id, city, state, zip) %>%
+      distinct()
 
   rbind(dbtbls$shelter, today_shelters) %>%
     distinct() %>%
@@ -108,8 +115,13 @@ db_update <- function(today_data, today_day, pool) {
   # let's forget about pet_dof, db_update for now
   shelter_last_update_today <-
     today_data %>%
-    group_by(shelter_id) %>%
-    summarise(last_update = max(last_update, na.rm = TRUE))
+      group_by(shelter_id) %>%
+      summarise(last_update = max(last_update, na.rm = TRUE))
+  if (nrow(shelter_last_update_today)) {
+    if (!is.POSIXct(shelter_last_update_today$last_update)) {
+      browser()
+    }
+  }
 
   rbind(dbtbls$shelter_last_update, shelter_last_update_today) %>%
     group_by(shelter_id) %>%
@@ -128,7 +140,7 @@ db_update <- function(today_data, today_day, pool) {
     left_join(dbtbls$shelter_last_update, "shelter_id") %>%
     mutate_at(vars(matches("last_update")), as_datetime) %>%
     mutate(diff_date = interval(current_dof_last_update, last_update) / days(1)) %>%
-    mutate(current_dof = ifelse(diff_date > 0, current_dof + days(diff_date), current_dof)) %>%
+    mutate(current_dof = ifelse(diff_date > 0, current_dof + diff_date, current_dof)) %>%
     # need to use if_else here so timestamp attribute isn't dropped
     mutate(current_dof_last_update = if_else(diff_date > 0, last_update, current_dof_last_update)) %>%
     select(1:4)

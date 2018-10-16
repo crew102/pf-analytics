@@ -30,7 +30,21 @@ close_cons <- function() {
 
 copy_to2 <- function(...) copy_to(..., temporary = FALSE, overwrite = TRUE)
 
-fetch_table <- function(pool, table) tbl(pool, table) %>% collect()
+fetch_table <- function(pool, table) {
+  x <- tbl(pool, table) %>% collect()
+  if (table == "shelter_last_update") {
+    x %>%
+      mutate(last_update = as_datetime(last_update))
+  } else if (table == "pet_tracking") {
+    x %>%
+      mutate(
+        first_seen = as_datetime(first_seen),
+        current_dof_last_update = as_datetime(current_dof_last_update)
+      )
+  } else {
+    x
+  }
+}
 
 fetch_all_tables <- function(pool) {
   tables <- db_list_tables(pool)
