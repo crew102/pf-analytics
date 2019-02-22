@@ -5,9 +5,6 @@ FROM rocker/tidyverse
 # note that a temp password is set for cbaker, which gets overridden in inst/overrides.sh
 RUN useradd -m -p password cbaker && adduser cbaker sudo
 
-# allow root access from within rstudio server
-ENV ROOT="TRUE"
-
 COPY . /home/cbaker/pfproto
 WORKDIR /home/cbaker/pfproto
 
@@ -17,6 +14,7 @@ RUN apt-get update && apt-get install -y cron && \
 
 # Rscript -e "devtools::install_github('r-dbi/RMySQL', ref = '2128ad61bb2d2503e105c4daeaa96a69b7bac888')"
 
+# add cron job
 RUN crontab -u cbaker /home/cbaker/pfproto/inst/cron/daily-download-job
 
 # make sure env vars inside container (at run-time) are used by cron, set
@@ -26,4 +24,5 @@ RUN crontab -u cbaker /home/cbaker/pfproto/inst/cron/daily-download-job
 CMD env >> /etc/environment && \
   chmod +x inst/overrides.sh && inst/overrides.sh && \
   cron && \
-  /init
+  rstudio-server start && \
+  sleep inf
