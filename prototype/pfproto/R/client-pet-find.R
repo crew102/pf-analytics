@@ -54,6 +54,7 @@ as_pftibble <- function(p_find_out) {
     # shelter fields
     city = pet$contact$city$`$t`,
     state = pet$contact$state$`$t`,
-    zip = pet$contact$zip$`$t`
+    zip = pet$contact$zip$`$t`,
+    email = pet$contact$email$`$t`
   )
 }
