@@ -32,6 +32,7 @@ services:
       - pf-key
       - mysql-root-password
       - rstudio-cbaker-password
+      - gmail
     restart: always
     volumes:
       - ./prototype/pfproto:/home/cbaker/pfproto
@@ -50,3 +51,5 @@ secrets:
     file: ./secrets/PF_KEY
   rstudio-cbaker-password:
     file: ./secrets/RSTUDIO_CBAKER_PASSWORD
+  gmail:
+    file: ./secrets/GMAIL

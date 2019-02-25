@@ -19,3 +19,18 @@ cache_files <- function() {
   ) %>%
     arrange(date)
 }
+
+auth_gmail <- function(file = "/run/secrets/GMAIL") {
+  gmailr::use_secret_file(file)
+  gmailr::gmail_auth("compose")
+}
+
+send_gmail <- function(file, body) {
+  auth_gmail(file)
+  gmailr::mime(
+    From = "pfanalytics787@gmail.com",
+    To = "chriscrewbaker@gmail.com"
+  ) %>% 
+    gmailr::text_body(body) %>% 
+    gmailr::send_message()
+}

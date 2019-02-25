@@ -17,4 +17,4 @@ pf-analytics
     * listens on 3306
     * mysql image
 
-* secrets used by services include: `MYSQL_ROOT_PASSWORD`, `AUTH0_CLIENT_SECRET`, `AUTH0_CLIENT_ID`, `COOKIE_SECRET`, `PF_KEY`, and `RSTUDIO_CBAKER_PASSWORD`. These need to be specified in secrets dir, one secret per file.
+* secrets used by services include: `MYSQL_ROOT_PASSWORD`, `AUTH0_CLIENT_SECRET`, `AUTH0_CLIENT_ID`, `COOKIE_SECRET`, `PF_KEY`, `RSTUDIO_CBAKER_PASSWORD`, and `GMAIL`. These need to be specified in secrets dir, one secret per file.

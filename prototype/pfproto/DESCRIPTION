@@ -17,7 +17,8 @@ Imports:
   devtools,
   RMySQL,
   DBI,
-  pool
+  pool,
+  gmailr
 Suggests: 
   testthat
 Encoding: UTF-8
