@@ -8,15 +8,15 @@ pet_df <-
       mutate(day = files_df$date[x])
   }) %>%
     do.call(rbind, .) %>%
-    arrange(shelter_id, pet_id, day) %>%
-    select(shelter_id, pet_id, day, name, last_update, breed, age)
+    arrange(shelter_id, pet_id, day)
 
 start_end <-
   pet_df %>%
     group_by(pet_id, shelter_id) %>%
-    summarise(start = min(day), end = max(day)) %>%
+    summarise(start = min(last_update), end = max(day)) %>%
     mutate_at(vars(start, end), funs(round_date(., "day"))) %>%
-    filter(start > "2018-03-28")
+    filter(start > "2018-03-28") %>%
+    filter(start > "2018-04-18")
 
 content <-
   pet_df %>%
@@ -40,3 +40,21 @@ sample_df <-
     filter(shelter_id == "DC19")
 
 timevis(sample_df)
+
+# explore relationships between vars and days on petfinder
+
+to_join <- pet_df %>% group_by(pet_id) %>% slice(1)
+
+vars <-
+  df %>%
+    filter(end < "2018-05-20") %>%
+    mutate(days_on = interval(start, end) / days(1)) %>%
+    select(pet_id, days_on) %>%
+    inner_join(to_join)
+
+vars %>%
+  tidyr::unnest(breed) %>%
+  group_by(breed) %>%
+  summarise(med = mean(days_on), num = n()) %>%
+  filter(num > 20) %>%
+  arrange(desc(med))
