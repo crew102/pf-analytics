@@ -7,3 +7,18 @@
 * restrict shiny incoming requests to certain host (i.e., auth host)
 * how to handle db transactions so don't write data worth half a day?
 * note that "days on petfinder" isn't actually dof, it's "max(number of days since pet has been on pet finder and shelter has been active on petfinder)" 
+
+
+* adding a new dog or removing a dog should be considered "activity"/sign of log in for shelter
+
+* search by shelterid?
+
+* if last_update on pet hasn't changed, don't update pet's var data. otherwise, update it
+
+* "has applicaiton" listed in description
+* how to handle foster
+* filtering out "bad" shelters - those that don't update, etc.
+* weird case when dogs without pics/descriptions adopted very quickly (less than 3 days)
+* predicting "additional days on pf," not total expected days...so it would take into account how many days have already been spent
+
+* have to account for fact that don't have data on each day
