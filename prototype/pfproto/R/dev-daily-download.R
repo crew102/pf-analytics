@@ -3,12 +3,19 @@
 # daily downloads will then be used to come up with the logic to determine
 # which dogs are "new" as well as how to increment the "days on petfinder" count
 dev_daily_download <- function() {
-  dpet <- distinct_pet("washington, dc")
-
-  maybe_gen_dir("cache")
-  file <- file.path("cache", paste0(time_to_fstring(), ".rds"))
-
-  saveRDS(dpet, file = file)
+  
+  dpet <- get_p_find(location = "washington, dc", count = 1000)
+  
+  if (httr::http_error(dpet)) {
+    error <- httr::content(dpet, "text")
+    send_gmail(body = error)
+    df <- data.frame(time = time_to_fstring(), error = error)
+    write.csv(df, "inst/cron/get-error.csv", row.names = FALSE)
+  } else {
+    maybe_gen_dir("cache")
+    file <- file.path("cache", paste0(time_to_fstring(), ".rds"))
+    saveRDS(dpet, file = file)
+  }
 }
 
 cache_files <- function() {

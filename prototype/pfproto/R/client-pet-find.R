@@ -1,9 +1,9 @@
 # get petfinder data for a given location
-p_find <- function(pf_key = get_secret("PF_KEY"),
-                   location = "20008",
-                   output = "full",
-                   count = 100,
-                   offset = 1) {
+get_p_find <- function(pf_key = get_secret("PF_KEY"),
+                       location = "20008",
+                       output = "full",
+                       count = 100,
+                       offset = 1) {
   paste0(
     "http://api.petfinder.com/pet.find?key=", pf_key,
     "&location=", utils::URLencode(location),
@@ -13,24 +13,13 @@ p_find <- function(pf_key = get_secret("PF_KEY"),
     "&animal=dog",
     "&format=json"
   ) %>%
-    httr::GET() %>%
-    resp_to_json()
+    httr::GET()
 }
 
-# get petfinder data for a given pet (used for investigating API's data model)
-p_find_id <- function(pf_key = get_secret("PF_KEY"), pet_id) {
-  paste0(
-    "http://api.petfinder.com/pet.get?key=", pf_key,
-    "&id=", pet_id,
-    "&format=json"
-  ) %>%
-    httr::GET() %>%
-    httr::content("text", encoding = "UTF-8")
-}
+parse_p_find <- function(resp) {
 
-as_pftibble <- function(p_find_out) {
-
-  pet <- p_find_out$petfinder$pets$pet
+  json <- resp_to_json(resp)
+  pet <- json$petfinder$pets$pet
 
   tibble(
     # fields in "pet" table
