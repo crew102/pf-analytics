@@ -1,7 +1,7 @@
 get_secret <- function(var) {
 
   env_key <- Sys.getenv(var)
-  local_file <- file.path("../../services/secrets", var)
+  local_file <- file.path("../../secrets", var)
   dcompose_file <- file.path("/run/secrets", gsub("_", "-", tolower(var)))
 
   if (env_key != "") # local
