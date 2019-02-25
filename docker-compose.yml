@@ -39,14 +39,14 @@ services:
 secrets:
 
   mysql-root-password:
-    file: ./services/secrets/MYSQL_ROOT_PASSWORD
+    file: ./secrets/MYSQL_ROOT_PASSWORD
   auth0-client-secret:
-    file: ./services/secrets/AUTH0_CLIENT_SECRET
+    file: ./secrets/AUTH0_CLIENT_SECRET
   auth0-client-id:
-    file: ./services/secrets/AUTH0_CLIENT_ID
+    file: ./secrets/AUTH0_CLIENT_ID
   cookie-secret:
-    file: ./services/secrets/COOKIE_SECRET
+    file: ./secrets/COOKIE_SECRET
   pf-key:
-    file: ./services/secrets/PF_KEY
+    file: ./secrets/PF_KEY
   rstudio-cbaker-password:
-    file: ./services/secrets/RSTUDIO_CBAKER_PASSWORD
+    file: ./secrets/RSTUDIO_CBAKER_PASSWORD

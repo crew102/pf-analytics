@@ -7,5 +7,5 @@ PF_KEY RSTUDIO_CBAKER_PASSWORD)
 for i in ${secrets[*]}
 do
 val=$(eval echo "$""${i}")
-echo $val > `pwd`/services/secrets/"$i"
+echo $val > `pwd`/secrets/"$i"
 done
