@@ -7,7 +7,7 @@ services:
     secrets:
       - mysql-root-password
     volumes:
-      - ./services/conf/mysql.cnf:/etc/mysql/conf.d/mysql.cnf
+      - ./conf/mysql.cnf:/etc/mysql/conf.d/mysql.cnf
     environment:
       # see docker secrets section at https://hub.docker.com/_/mysql/
       MYSQL_ROOT_PASSWORD_FILE: /run/secrets/mysql-root-password
@@ -18,7 +18,7 @@ services:
     secrets:
       - mysql-root-password
     volumes:
-      - ./services/conf/shiny-server.conf:/etc/shiny-server/shiny-server.conf
+      - ./conf/shiny-server.conf:/etc/shiny-server/shiny-server.conf
       - ./shiny-server/pfapp:/srv/shiny-server/pfapp
     restart: always
 
