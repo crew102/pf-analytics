@@ -5,7 +5,7 @@ gen_db <- function(pool) {
 }
 
 is_first_day <- function(pool) {
-  suppressWarnings(tbl(pool, "db_update") %>% collect(n = 1)) %>% nrow() == 0
+  suppressWarnings(tbl(pool, "initial_pets") %>% collect(n = 1)) %>% nrow() == 0
 }
 
 write_init_pets <- function(pftibble, pool) {
