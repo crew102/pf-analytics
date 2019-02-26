@@ -18,7 +18,8 @@ Imports:
   RMySQL,
   DBI,
   pool,
-  gmailr
+  gmailr,
+  timevis
 Suggests: 
   testthat
 Encoding: UTF-8

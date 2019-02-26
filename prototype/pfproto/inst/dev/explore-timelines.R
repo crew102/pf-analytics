@@ -1,6 +1,10 @@
 library(dplyr)
 library(lubridate)
 library(timevis)
+library(devtools)
+
+load_all()
+files_df <- cache_files()
 
 pet_df <-
   lapply(1:35, function(x) {
