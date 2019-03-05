@@ -19,7 +19,8 @@ Imports:
   DBI,
   pool,
   gmailr,
-  timevis
+  timevis,
+  purrr
 Suggests: 
   testthat
 Encoding: UTF-8

@@ -9,7 +9,7 @@ COPY . /home/cbaker/pfproto
 WORKDIR /home/cbaker/pfproto
 
 # install deps
-RUN apt-get update && apt-get install -y cron && \
+RUN apt-get update && apt-get install -y cron mysql-client && \
   Rscript -e "devtools::install_deps(repos = 'https://mran.microsoft.com/snapshot/2018-03-20', upgrade = FALSE); devtools::install()"
 
 # Rscript -e "devtools::install_github('r-dbi/RMySQL', ref = '2128ad61bb2d2503e105c4daeaa96a69b7bac888')"
