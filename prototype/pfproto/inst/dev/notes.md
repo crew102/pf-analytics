@@ -22,3 +22,10 @@
 * predicting "additional days on pf," not total expected days...so it would take into account how many days have already been spent
 
 * have to account for fact that don't have data on each day
+
+* dogs taken off then added back on in a few days (account for this)
+* same dog with diff id (use size, sex, name, age to determine if should merge)
+* account for changes in data (pics added, breed changed, etc)
+* redefine "date taken off" as first date where dog hasn't been seen in five days
+
+* define a pet as being "off petfinder" if it hasn't been seen in five days (id wise and "data wise")
