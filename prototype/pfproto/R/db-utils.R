@@ -31,15 +31,7 @@ close_cons <- function() {
 fetch_table <- function(pool = create_pool(), table) {
   x <- tbl(pool, table) %>% collect()
   # for some reason datetimes aren't being read in as dates
-  if (table == "pet_tracking") {
-    x %>% mutate(first_seen = as_datetime(first_seen))
-  } else if (table == "shelter_activity") {
-    x %>% mutate(activity_date = as_datetime(activity_date))
-  } else if (table == "pet_dof") {
-    x %>% mutate(first_seen = as_datetime(first_seen), today_day = as_datetime(today_day))
-  } else {
-    x
-  }
+  x %>% mutate_at(vars(matches("seen")), as_datetime)
 }
 
 fetch_all_tables <- function(pool) {
