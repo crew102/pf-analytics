@@ -30,6 +30,9 @@ db_update <- function(today_data, today_day, pool) {
     inner_join(today_data, by = c("shelter_id", "name", "age", "size")) %>%
     select(pet_id.x, pet_id.y) %>%
     rename(original_pet_id = pet_id.x, new_pet_id = pet_id.y)
+    rbind(dbtbls$changed_ids) %>%
+    distinct()
+  copy_to2(pool, changed_ids, "changed_ids")
 
   # update today data by subing in old ids for those pets that have a changed
   # id

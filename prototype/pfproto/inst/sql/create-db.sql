@@ -21,3 +21,8 @@ create table if not exists initial_pets (
 create table if not exists blacklisted_pets (
   pet_id int not null
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
+
+create table if not exists changed_ids (
+  original_pet_id int not null,
+  new_pet_id int not null
+) ENGINE = InnoDB DEFAULT CHARSET = utf8;
