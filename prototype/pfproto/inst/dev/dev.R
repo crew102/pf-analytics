@@ -2,7 +2,6 @@ library(dplyr)
 library(tidyr)
 library(devtools)
 library(lubridate)
-library(stringr)
 
 load_all()
 files_df <- cache_files()
@@ -24,9 +23,7 @@ db_update <- function(today_data, today_day, pool) {
   # removed from petfinder based on their ids. an id is considered changed if
   # we're tracking it, its id can be found in today's data, but its shelter_id,
   # name (cleaned), age, size are all found in today's data
-  today_data <- today_data %>%
-    mutate(name = gsub("\\s*\\([^\\)]+\\)", "", name)) %>%
-    mutate(name = str_trim(name, "both"))
+  today_data <- today_data %>% mutate(name = norm_name(name))
 
   changed_ids <- tracking_pet %>%
     anti_join(today_data, by = "pet_id") %>%

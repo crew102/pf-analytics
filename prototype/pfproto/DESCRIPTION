@@ -20,7 +20,8 @@ Imports:
   pool,
   gmailr,
   timevis,
-  purrr
+  purrr,
+  stringr
 Suggests: 
   testthat
 Encoding: UTF-8
